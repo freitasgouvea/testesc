@@ -112,6 +112,7 @@
     <script src="abi.js"></script>
     <script>
         var valueToPay = 0;
+        var valueToDraw = 0;
 
         var frmPesquisa = document.formPesquisa;
         function showBill() {
@@ -126,6 +127,7 @@
                     return
                 }
                 $("#resultadoPesquisa").html("A fatura pesquisada é: " + resultado);
+                valueToPay = resultado;
             })
         }
 
@@ -133,7 +135,7 @@
         function payService() {
             event.preventDefault();
             $("#statusTransacao").html("&nbsp;");
-            contract.payService(formPagamento.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: resultado}, function (erro, resultado) {
+            contract.payService(formPagamento.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToPay}, function (erro, resultado) {
                 if (erro) {
                     console.log("payService");
                     console.error(erro);
@@ -178,7 +180,7 @@
         function drawSells() {
             event.preventDefault();
             $("#statusSaque").html("&nbsp;");
-            contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: formSaque._value}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
                     console.error(erro);
