@@ -31,8 +31,6 @@ contract ServiceSmartContract {
     }
     
     function showBill (uint256 serviceId) public view returns (uint256) {
-        return listOfSells[serviceId].contractor;
-        return listOfSells[serviceId].dueDate;
         return listOfSells[serviceId].valueOfBill;
     }
     
