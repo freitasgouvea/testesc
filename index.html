@@ -111,6 +111,8 @@
     <script src="connectToSmartContract.js"></script>
     <script src="abi.js"></script>
     <script>
+        var valueToPay = 0;
+
         var frmPesquisa = document.formPesquisa;
         function showBill() {
             event.preventDefault();
@@ -131,7 +133,7 @@
         function payService() {
             event.preventDefault();
             $("#statusTransacao").html("&nbsp;");
-            contract.payService(formPagamento.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+            contract.payService(formPagamento.serviceId.value, {from: web3.eth.accounts[0], gas: 3000000, value: resultado}, function (erro, resultado) {
                 if (erro) {
                     console.log("payService");
                     console.error(erro);
@@ -150,7 +152,7 @@
                 if (erro) {
                     console.log("registrerService");
                     console.error(erro);
-                    alert("Houve um erro ao registrar esse serviço");
+                    alert("Houve um erro ao registrar o serviço.");
                     return
                 }
                 waitForTxToBeMined(resultado, "#statusTransacao");
