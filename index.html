@@ -147,7 +147,7 @@
         var frmRegistro = document.formRegistro;
         function registrerService() {
             event.preventDefault();
-            $("#statusTransacao").html("&nbsp;");
+            $("#statusRegistro").html("&nbsp;");
             contract.registrerService(frmRegistro.contractor.value, frmRegistro.dueDate.value, frmRegistro.billValue.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                 if (erro) {
                     console.log("registrerService");
@@ -155,13 +155,13 @@
                     alert("Houve um erro ao registrar o serviço.");
                     return
                 }
-                waitForTxToBeMined(resultado, "#statusTransacao");
+                waitForTxToBeMined(resultado, "#statusRegistro");
             })
         }
         var frmBalance = document.formBalance;
         function showBalance() {
             event.preventDefault();
-            $("#resultadoPesquisa").html("");
+            $("#showBalance").html("");
             contract.showBalance(showBalance.value, function (erro, resultado) {
                 if (erro) {
                     console.log("showBalance");
@@ -170,14 +170,14 @@
                     frmPesquisa.value = "";
                     return
                 }
-                $("#resultadoPesquisa").html("O balanço da conta é: " + resultado);
+                $("#showBalance").html("O balanço da conta é: " + resultado);
             })
         }
         
         var frmSaque = document.formSaque;
         function drawSells() {
             event.preventDefault();
-            $("#statusTransacao").html("&nbsp;");
+            $("#statusSaque").html("&nbsp;");
             contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
@@ -185,7 +185,7 @@
                     alert("Houve um erro ao efetuar o saque");
                     return
                 }
-                waitForTxToBeMined(resultado, "#statusTransacao");
+                waitForTxToBeMined(resultado, "#statusSaque");
             })
         }
 
