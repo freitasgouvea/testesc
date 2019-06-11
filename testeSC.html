@@ -71,6 +71,40 @@
                 <div id="statusTransacao">&nbsp;</div>
             </div> 
         </div>
+        <br>
+        <hr>
+        <br>
+        <h2>Consultar Saldo</h2>
+        <br>
+        <div id="saldo">
+            <form action="#" method="get" name="formBalance" id="formBalance">
+                <div>
+                    <button onclick="showBalance()">Saldo</button>
+                </div>
+            </form>
+            <br>
+            <div id="balance"></div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h2>Sacar da Conta</h2>
+        <br>
+        <div id="saque">
+            <form action="#" method="POST" name="formSaque" id="formSaque">
+                <div>
+                    <label for="_value">Informe o valor a ser sacado: </label>
+                    <input type="number" name="_value" id="_value" size="45" />
+                </div>
+                <div>
+                    <button onclick="drawSells()">Sacar</button>
+                </div>
+            </form>
+            <br>
+            <div>
+                <div id="statusTransacao">&nbsp;</div>
+            </div> 
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -122,6 +156,37 @@
                 waitForTxToBeMined(resultado, "#statusTransacao");
             })
         }
+        var frmBalance = document.formBalance;
+        function showBalance() {
+            event.preventDefault();
+            $("#resultadoPesquisa").html("");
+            contract.showBalance(showBalance.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("showBalance");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o balanço.");
+                    frmPesquisa.value = "";
+                    return
+                }
+                $("#resultadoPesquisa").html("O balanço da conta é: " + resultado);
+            })
+        }
+        
+        var frmSaque = document.formSaque;
+        function drawSells() {
+            event.preventDefault();
+            $("#statusTransacao").html("&nbsp;");
+            contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                if (erro) {
+                    console.log("drawSells");
+                    console.error(erro);
+                    alert("Houve um erro ao efetuar o saque");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusTransacao");
+            })
+        }
+
     </script>
 </body>
 </html>
