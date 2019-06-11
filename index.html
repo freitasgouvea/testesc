@@ -118,12 +118,12 @@
         function showBill() {
             event.preventDefault();
             $("#resultadoPesquisa").html("");
-            contract.showBill(frmPesquisa.bill.value, function (erro, resultado) {
+            contract.showBill(frmPesquisa.serviceId.value, function (erro, resultado) {
                 if (erro) {
                     console.log("showBill");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar a fatura");
-                    frmPesquisa.bill.value = "";
+                    frmPesquisa.serviceId.value = "";
                     return
                 }
                 $("#resultadoPesquisa").html("A fatura pesquisada é: " + resultado);
