@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Prestador De Serviços</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Página do Prestador de Serviço</h1>
+        <br>
+        <h2>Registrar um serviço</h2>
+        <br>
+        <div id="registro">
+            <form action="#" method="POST" name="formRegistro" id="formRegistro">
+                <div>
+                    <label for="contractor">Informe o endereço do contratante: </label>
+                    <input type="text" name="contractor" id="contractor" size="45" />
+                </div>
+                <div>
+                    <label for="dueDate">Informe a data do pagamento: </label>
+                    <input type="number" name="dueDate" id="dueDate" />
+                </div>
+                <div>
+                    <label for="billValue">Informe o valor do serviço: </label>
+                    <input type="number" name="billValue" id="billValue" />
+                </div>
+                <div>
+                    <button onclick="registrerService()">Registrar</button>
+                </div>
+            </form>
+            <br>
+            <div>
+                <div id="statusRegistro">&nbsp;</div>
+            </div> 
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h2>Consultar Serviços</h2>
+        <br>
+        <div id="servicos">
+            <form action="#" method="get" name="formServicos" id="formServicos">
+                <div>
+                    <label for="serviceId">Informe o endereço do contratante: </label>
+                    <input type="text" name="serviceId" id="serviceId" size="45" />
+                </div>
+                <div>
+                    <button onclick="getSell()">Saldo</button>
+                </div>
+            </form>
+            <br>
+            <div id="showSell"></div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h2>Consultar Saldo</h2>
+        <br>
+        <div id="saldo">
+            <form action="#" method="get" name="formBalance" id="formBalance">
+                <div>
+                    <button onclick="showBalance()">Saldo</button>
+                </div>
+            </form>
+            <br>
+            <div id="showBalance"></div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <h2>Sacar da Conta</h2>
+        <br>
+        <div id="saque">
+            <form action="#" method="POST" name="formSaque" id="formSaque">
+                <div>
+                    <label for="_value">Informe o valor a ser sacado: </label>
+                    <input type="number" name="_value" id="_value" size="45" />
+                </div>
+                <div>
+                    <button onclick="drawSells()">Sacar</button>
+                </div>
+            </form>
+            <br>
+            <div>
+                <div id="statusSaque">&nbsp;</div>
+            </div> 
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="connectToSmartContract.js"></script>
+    <script src="abi.js"></script>
+    <script>
+        
+        var frmRegistro = document.formRegistro;
+        function registrerService() {
+            event.preventDefault();
+            $("#statusRegistro").html("&nbsp;");
+            contract.registrerService(frmRegistro.contractor.value, frmRegistro.dueDate.value, frmRegistro.billValue.value, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
+                if (erro) {
+                    console.log("registrerService");
+                    console.error(erro);
+                    alert("Houve um erro ao registrar o serviço.");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusRegistro");
+            })
+        }
+
+        var formServicos = document.formServicos;
+        function getSell() {
+            event.preventDefault();
+            $("#showSell").html("&nbsp;");
+            contract.getSell(formServicos.contractor.value,formServicos.dueDate.value, formServicos.valueOfBill.value, formServicos.dateOfPayment.value, formServicos.servicePayed.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("getSell");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o serviço");
+                    return
+                }
+                $("#showSell").html("Os detalhes do servição são estes: " + resultado);
+            })
+        }
+
+        var frmBalance = document.formBalance;
+        function showBalance() {
+            event.preventDefault();
+            $("#showBalance").html("");
+            contract.showBalance(showBalance.value, function (erro, resultado) {
+                if (erro) {
+                    console.log("showBalance");
+                    console.error(erro);
+                    alert("Houve um erro ao pesquisar o balanço.");
+                    frmPesquisa.value = "";
+                    return
+                }
+                $("#showBalance").html("O balanço da conta é: " + resultado);
+            })
+        }
+        
+        var frmSaque = document.formSaque;
+        function drawSells() {
+            event.preventDefault();
+            $("#statusSaque").html("&nbsp;");
+            contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: frmSaque._value}, function (erro, resultado) {
+                if (erro) {
+                    console.log("drawSells");
+                    console.error(erro);
+                    alert("Houve um erro ao efetuar o saque");
+                    return
+                }
+                waitForTxToBeMined(resultado, "#statusSaque");
+            })
+        }
+
+    </script>
+</body>
+</html>
