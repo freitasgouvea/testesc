@@ -83,7 +83,7 @@
             </form>
             <br>
             <div>
-                <div id="statusSaque">&nbsp;</div>
+                <div id="drawSells">&nbsp;</div>
             </div> 
         </div>
     </div>
@@ -139,14 +139,14 @@
                     frmPesquisa.value = "";
                     return
                 }
-                $("#showBalance").html("O balanço da conta é: " + resultado);
+                $("#showBalance").html("O balanço da conta é: ETH " + (resultado/1000000000000000000));
             })
         }
         
         var frmSaque = document.formSaque;
         function drawSells() {
             event.preventDefault();
-            $("#statusSaque").html("&nbsp;");
+            $("#drawSells").html("&nbsp;");
             valueToDraw = (formSaque._value/1);
             contract.drawSells(formSaque._value._value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToDraw}, function (erro, resultado) {
                 if (erro) {
@@ -155,7 +155,7 @@
                     alert("Houve um erro ao efetuar o saque");
                     return
                 }
-                waitForTxToBeMined(resultado, "#statusSaque");
+                waitForTxToBeMined(resultado, "#drawSells");
             })
         }
 
