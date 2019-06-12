@@ -40,19 +40,17 @@
         <hr>
         <br>
         <h2>Consultar Serviços</h2>
-        <br>
-        <div id="servicos">
-            <form action="#" method="get" name="formServicos" id="formServicos">
+        <div id="servico">
+            <form action="#" method="get" name="formServico" id="formServico">
                 <div>
                     <label for="serviceId">Informe o número do serviço: </label>
-                    <input type="number" name="serviceId" id="serviceId" size="45" />
+                    <input type="number" name="serviceId" id="serviceId" />
                 </div>
                 <div>
-                    <button onclick="getSell()">Consultar</button>
+                    <button onclick="showSell()">Pesquisar</button>
                 </div>
             </form>
-            <br>
-            <div id="getSell"></div>
+            <div id="resultadoPesquisa"></div>
         </div>
         <br>
         <hr>
@@ -112,18 +110,20 @@
             })
         }
 
-        var formServicos = document.formServicos;
-        function getSell() {
+        var frmPesquisa = document.formServico;
+        function showSell() {
             event.preventDefault();
-            $("#getSell").html("&nbsp;");
-            contract.getSell(getSell.contractor.address, getSell.dueDate.value, getSell.valueOfBill.value, getSell.dateOfPayment.value, getSell.servicePayed.bool, function (erro, resultado) {
+            $("#resultadoPesquisa").html("");
+            contract.showSell(frmPesquisa.serviceId.value, function (erro, resultado) {
                 if (erro) {
-                    console.log("getSell");
+                    console.log("showSell");
                     console.error(erro);
-                    alert("Houve um erro ao pesquisar o serviço");
+                    alert("Houve um erro ao pesquisar a fatura");
+                    frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#getSell").html("Os detalhes do servição são estes: " + resultado);
+                $("#resultadoPesquisa").html("A fatura pesquisada é: " + resultado);
+                AddressToCall = (frmPesquisa.serviceId.value);
             })
         }
 
