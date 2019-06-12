@@ -52,7 +52,7 @@
                 </div>
             </form>
             <br>
-            <div id="showSell"></div>
+            <div id="getSell"></div>
         </div>
         <br>
         <hr>
@@ -113,15 +113,15 @@
         var formServicos = document.formServicos;
         function getSell() {
             event.preventDefault();
-            $("#showSell").html("&nbsp;");
-            contract.getSell(showSell.contractor.value, showSell.dueDate.value, showSell.valueOfBill.value, showSell.dateOfPayment.value, showSell.servicePayed.value, function (erro, resultado) {
+            $("#getSell").html("&nbsp;");
+            contract.getSell(getSell.contractor.value, getSell.dueDate.value, getSell.valueOfBill.value, getSell.dateOfPayment.value, getSell.servicePayed.value, function (erro, resultado) {
                 if (erro) {
                     console.log("getSell");
                     console.error(erro);
                     alert("Houve um erro ao pesquisar o serviço");
                     return
                 }
-                $("#showSell").html("Os detalhes do servição são estes: " + resultado);
+                $("#getSell").html("Os detalhes do servição são estes: " + resultado);
             })
         }
 
