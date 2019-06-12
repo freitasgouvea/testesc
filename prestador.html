@@ -147,8 +147,7 @@
         function drawSells() {
             event.preventDefault();
             $("#drawSells").html("&nbsp;");
-            valueToDraw = (formSaque._value/1);
-            contract.drawSells(formSaque._value._value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToDraw}, function (erro, resultado) {
+            contract.drawSells(formSaque._value.valueToTransfer, {from: web3.eth.accounts[0], gas: 3000000, value: 0}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
                     console.error(erro);
