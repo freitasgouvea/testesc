@@ -95,6 +95,8 @@
     <script src="abi.js"></script>
     <script>
         
+        var valueToDraw = 0;
+
         var frmRegistro = document.formRegistro;
         function registrerService() {
             event.preventDefault();
@@ -145,6 +147,7 @@
         function drawSells() {
             event.preventDefault();
             $("#statusSaque").html("&nbsp;");
+            valueToDraw = (formSaque._value/1);
             contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: frmSaque._value}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
