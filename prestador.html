@@ -44,11 +44,11 @@
         <div id="servicos">
             <form action="#" method="get" name="formServicos" id="formServicos">
                 <div>
-                    <label for="serviceId">Informe o endereço do contratante: </label>
-                    <input type="text" name="serviceId" id="serviceId" size="45" />
+                    <label for="serviceId">Informe o número do serviço: </label>
+                    <input type="number" name="serviceId" id="serviceId" size="45" />
                 </div>
                 <div>
-                    <button onclick="getSell()">Saldo</button>
+                    <button onclick="getSell()">Consultar</button>
                 </div>
             </form>
             <br>
@@ -114,7 +114,7 @@
         function getSell() {
             event.preventDefault();
             $("#showSell").html("&nbsp;");
-            contract.getSell(formServicos.contractor.value,formServicos.dueDate.value, formServicos.valueOfBill.value, formServicos.dateOfPayment.value, formServicos.servicePayed.value, function (erro, resultado) {
+            contract.getSell(showServico.contractor.value,showServico.dueDate.value, showServico.valueOfBill.value, showServico.dateOfPayment.value, showServico.servicePayed.value, function (erro, resultado) {
                 if (erro) {
                     console.log("getSell");
                     console.error(erro);
