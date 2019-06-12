@@ -39,7 +39,7 @@
         <br>
         <hr>
         <br>
-        <h2>Consultar Serviços</h2>
+        <h2>Consultar Fatura</h2>
         <div id="servico">
             <form action="#" method="get" name="formServico" id="formServico">
                 <div>
@@ -148,7 +148,7 @@
             event.preventDefault();
             $("#statusSaque").html("&nbsp;");
             valueToDraw = (formSaque._value/1);
-            contract.drawSells(formSaque._value.value, {from: web3.eth.accounts[0], gas: 3000000, value: frmSaque._value}, function (erro, resultado) {
+            contract.drawSells(formSaque._value._value, {from: web3.eth.accounts[0], gas: 3000000, value: valueToDraw}, function (erro, resultado) {
                 if (erro) {
                     console.log("drawSells");
                     console.error(erro);
