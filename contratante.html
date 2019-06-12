@@ -63,7 +63,7 @@
                     frmPesquisa.serviceId.value = "";
                     return
                 }
-                $("#resultadoPesquisa").html("A fatura pesquisada é: " + resultado);
+                $("#resultadoPesquisa").html("A fatura pesquisada é: ETH " + (resultado/1000000000000000000));
                 valueToPay = (resultado*1);
             })
         }
