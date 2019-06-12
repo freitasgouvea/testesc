@@ -1,38 +1,30 @@
-/* This is for example purposes */
 const contractABI = [
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "",
+				"name": "_value",
 				"type": "uint256"
 			}
 		],
-		"name": "listOfSells",
-		"outputs": [
+		"name": "drawSells",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
 			{
-				"name": "contractor",
-				"type": "address"
-			},
-			{
-				"name": "dueDate",
+				"name": "serviceId",
 				"type": "uint256"
-			},
-			{
-				"name": "valueOfBill",
-				"type": "uint256"
-			},
-			{
-				"name": "dateOfPayment",
-				"type": "uint256"
-			},
-			{
-				"name": "servicePayed",
-				"type": "bool"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
+		"name": "payService",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -58,51 +50,15 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [],
-		"name": "showBalance",
-		"outputs": [
+		"inputs": [
 			{
-				"name": "",
-				"type": "uint256"
+				"name": "_providerWallet",
+				"type": "address"
 			}
 		],
 		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "serviceId",
-				"type": "uint256"
-			}
-		],
-		"name": "payService",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "serviceId",
-				"type": "uint256"
-			}
-		],
-		"name": "showBill",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"constant": true,
@@ -140,36 +96,79 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "_value",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "drawSells",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
+		"name": "listOfSells",
+		"outputs": [
 			{
-				"name": "_providerWallet",
+				"name": "contractor",
 				"type": "address"
+			},
+			{
+				"name": "dueDate",
+				"type": "uint256"
+			},
+			{
+				"name": "valueOfBill",
+				"type": "uint256"
+			},
+			{
+				"name": "dateOfPayment",
+				"type": "uint256"
+			},
+			{
+				"name": "servicePayed",
+				"type": "bool"
 			}
 		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "showBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "serviceId",
+				"type": "uint256"
+			}
+		],
+		"name": "showBill",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
 
 if (network === "4") {
-    contractAddress = "0x677f36440CAD9d453ef9b15a571E8fCBfc3C3B84"; 
+    contractAddress = "0x47ff9120B641BA18896d5b04b9291E29D98B9ad3"; 
 } else {
-    contractAddress = "0x677f36440CAD9d453ef9b15a571E8fCBfc3C3B84"; 
+    contractAddress = "0x47ff9120B641BA18896d5b04b9291E29D98B9ad3"; 
 }
 
 contract = web3.eth.contract(contractABI).at(contractAddress);
