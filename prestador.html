@@ -114,7 +114,7 @@
         function getSell() {
             event.preventDefault();
             $("#getSell").html("&nbsp;");
-            contract.getSell(getSell.contractor.value, getSell.dueDate.value, getSell.valueOfBill.value, getSell.dateOfPayment.value, getSell.servicePayed.value, function (erro, resultado) {
+            contract.getSell(getSell.contractor.address, getSell.dueDate.value, getSell.valueOfBill.value, getSell.dateOfPayment.value, getSell.servicePayed.bool, function (erro, resultado) {
                 if (erro) {
                     console.log("getSell");
                     console.error(erro);
