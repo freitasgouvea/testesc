@@ -26,15 +26,16 @@
             </div>
             <div class="input">
                     <label for="clausulas">Cláusulas do Contrato </label>
-                    <input type="string" name="clausulas" id="clausulas" class="form-id bg-3" size="20"
+                    <input type="string" name="clausulas" id="input" class="form-id bg-3" size="20"
                         placeholder="Copie e cole as cláusulas" required="">
                     <button type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
-                    value="SHA-1" class="btn btn-secondary">Gerar hash</button>                     
+                    value="clausulas" class="btn btn-secondary">Gerar hash</button>                     
             </div>
+            <div id = "hash" ></div>
             <div class="input">
                     <label for="contractHash">Confirme o hash (SHA1) do contrato: </label>
                     <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
-                        placeholder="output" required="">
+                        placeholder="" required="">
                 </div>
                 <div>
                     <button type="button" onclick="registrerService()" class="btn btn-success">Assinar e
