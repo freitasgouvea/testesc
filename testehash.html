@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Prestador</title>
+    <title>Teste Hash</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -25,36 +25,29 @@
                     placeholder="0.0001" required="">
             </div>
             <div class="input">
-                    <label for="clausulas">Cláusulas do Contrato </label>
-                    <input type="string" name="clausulas" id="input" class="form-id bg-3" size="20"
-                        placeholder="Copie e cole as cláusulas" required="">
-                    <button type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
-                    value="clausulas" class="btn btn-secondary">Gerar hash</button>                     
+                <label for="clausulas">Cláusulas do Contrato </label>
+                <input type="string" name="clausulas" id="input" class="form-id bg-3" size="20"
+                    placeholder="Copie e cole as cláusulas" required="">
+                <button type="button"
+                    onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
+                    value="clausulas" class="btn btn-secondary">Gerar hash</button>
             </div>
-            <div id = "hash" ></div>
+            <p id="hash"></p>
             <div class="input">
-                    <label for="contractHash">Confirme o hash (SHA1) do contrato: </label>
-                    <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
-                        placeholder="" required="">
-                </div>
-                <div>
-                    <button type="button" onclick="registrerService()" class="btn btn-success">Assinar e
-                        Regsitrar</button>
-                </div>
+                <label for="contractHash">Confirme o hash (SHA1) do contrato: </label>
+                <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32" placeholder=""
+                    required="">
+            </div>
+            <div>
+                <button type="button" onclick="registrerService()" class="btn btn-success">Assinar e
+                    Regsitrar</button>
+            </div>
         </form>
         <br>
         <div id="statusRegistro"></div>
         <br>
     </div>
-
-<form>
-    <label for="clausulas">Cláusulas do Contrato </label>
-    <input type="string" name="clausulas" id="clausulas" class="form-id bg-3" size="20"
-        placeholder="Copie e cole as cláusulas" required="">
-    <button type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
-    value="SHA-1" class="btn btn-secondary">Gerar hash</button>
-    <br>
-    <div id="hash"></div>
-</form>
+    
     <script type="text/javascript" src="testehash.js"></script>
+    
 </body>
