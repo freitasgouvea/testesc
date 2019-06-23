@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prestador</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <form action="#" method="get" name="formRegistro" id="formRegistro">
+            <div class="input">
+                <label for="contractorId">ID do contratante: </label>
+                <input type="string" name="contractorId" id="contractorId" class="form-id bg-3" size="32"
+                    placeholder="ID do Contratante" required="">
+            </div>
+            <div class="input">
+                <label for="contractorId">Valor do serviço: ETH </label>
+                <input type="number" name="contractorId" id="contractorId" class="form-id bg-3" size="20"
+                    placeholder="0.0001" required="">
+            </div>
+            <div class="input">
+                    <label for="clausulas">Cláusulas do Contrato </label>
+                    <input type="string" name="clausulas" id="clausulas" class="form-id bg-3" size="20"
+                        placeholder="Copie e cole as cláusulas" required="">
+                    <button type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
+                    value="SHA-1" class="btn btn-secondary">Gerar hash</button>                     
+            </div>
+            <div class="input">
+                    <label for="contractHash">Confirme o hash (SHA1) do contrato: </label>
+                    <input type="string" name="contractHash" id="contractHash" class="form-id bg-3" size="32"
+                        placeholder="output" required="">
+                </div>
+                <div>
+                    <button type="button" onclick="registrerService()" class="btn btn-success">Assinar e
+                        Regsitrar</button>
+                </div>
+        </form>
+        <br>
+        <div id="statusRegistro"></div>
+        <br>
+    </div>
+
+<form>
+    <label for="clausulas">Cláusulas do Contrato </label>
+    <input type="string" name="clausulas" id="clausulas" class="form-id bg-3" size="20"
+        placeholder="Copie e cole as cláusulas" required="">
+    <button type="button" onclick="document.getElementById('hash').value = hex_sha1(document.getElementById('input').value)"
+    value="SHA-1" class="btn btn-secondary">Gerar hash</button>
+    <br>
+    <div id="hash"></div>
+</form>
+    <script type="text/javascript" src="testehash.js"></script>
+</body>
